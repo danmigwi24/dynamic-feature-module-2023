@@ -1,0 +1,5 @@
+<resources>
+
+    <string name="home_module">Home</string>
+    <string name="hilt_module">Hilt Module</string>
+</resources>
