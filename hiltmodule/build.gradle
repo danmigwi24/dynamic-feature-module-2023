@@ -4,7 +4,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
-    id "com.google.dagger.hilt.android"
+  //  id "com.google.dagger.hilt.android"
 }
 android {
     compileSdkVersion rootProject.compileSdkVersion
@@ -55,11 +55,11 @@ dependencies {
 
     //
     //HILT DAGGER
-    implementation "com.google.dagger:hilt-android:2.44"
+/*    implementation "com.google.dagger:hilt-android:2.44"
     kapt "com.google.dagger:hilt-compiler:2.44"
-    kapt 'androidx.hilt:hilt-compiler:1.0.0'
+    kapt 'androidx.hilt:hilt-compiler:1.0.0'*/
     // When using Java.
-    annotationProcessor 'androidx.hilt:hilt-compiler:1.0.0'
+    //annotationProcessor 'androidx.hilt:hilt-compiler:1.0.0'
     //Work Manage
     implementation 'androidx.work:work-runtime-ktx:2.7.1'
     //implementation 'androidx.hilt:hilt-work:1.0.0'

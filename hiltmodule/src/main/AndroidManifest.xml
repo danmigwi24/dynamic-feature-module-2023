@@ -13,9 +13,7 @@
         <dist:fusing dist:include="true" />
     </dist:module>
 
-    <application
-        android:name=".HiltModuleApplication"
-        tools:replace="android:name">
-        <activity android:name="com.ekenya.rnd.hiltmodule.MainActivity" />
+    <application>
+        <activity android:name="com.daniel.dkm.hiltmodule.MainActivity" />
     </application>
 </manifest>

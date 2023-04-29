@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -57,40 +56,7 @@ class MainFragment : BaseDaggerFragment() {
     }
 
     private val module by lazy {
-        Modules.FeatureTourism.INSTANCE
-    }
-
-    private val splitInstallManager: SplitInstallManager by lazy {
-        SplitInstallManagerFactory.create(requireActivity())
-    }
-
-    private val listener = SplitInstallStateUpdatedListener { state ->
-        when (state.status()) {
-            SplitInstallSessionStatus.DOWNLOADING -> {
-                setStatus("DOWNLOADING")
-            }
-            SplitInstallSessionStatus.INSTALLING -> {
-                setStatus("INSTALLING")
-            }
-            SplitInstallSessionStatus.INSTALLED -> {
-
-                // Enable module immediately
-                activity?.let { SplitCompat.install(it) }
-
-                setStatus("${module.name} already installed\nPress start to continue ..")
-                //
-                binding.btnHomeModule.visibility = View.VISIBLE
-                binding.btnHomeModule.setOnClickListener {
-                    showFeatureModule(module)
-                }
-                binding.btnHiltModule.setOnClickListener {
-                    showFeatureModule(Modules.FeatureHiltModule.INSTANCE)
-                }
-            }
-            SplitInstallSessionStatus.FAILED -> {
-                setStatus("FAILED")
-            }
-        }
+        Modules.FeatureHomeModule.INSTANCE
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -113,6 +79,12 @@ class MainFragment : BaseDaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.btnHomeModule.setOnClickListener {
+            showFeatureModule( Modules.FeatureHomeModule.INSTANCE)
+        }
+        binding.btnHiltModule.setOnClickListener {
+            showFeatureModule(Modules.FeatureHiltModule.INSTANCE)
+        }
         binding.composeView.apply {
             // Dispose the Composition when viewLifecycleOwner is destroyed
             setViewCompositionStrategy(
@@ -123,6 +95,34 @@ class MainFragment : BaseDaggerFragment() {
                 DFM_JC_TEMPLATE() {
                     ExplainWhyThisApp()
                 }
+            }
+        }
+    }
+
+    private val splitInstallManager: SplitInstallManager by lazy {
+        SplitInstallManagerFactory.create(requireActivity())
+    }
+
+    private val listener = SplitInstallStateUpdatedListener { state ->
+        when (state.status()) {
+            SplitInstallSessionStatus.DOWNLOADING -> {
+                setStatus("DOWNLOADING")
+            }
+            SplitInstallSessionStatus.INSTALLING -> {
+                setStatus("INSTALLING")
+            }
+            SplitInstallSessionStatus.INSTALLED -> {
+
+                // Enable module immediately
+                activity?.let { SplitCompat.install(it) }
+
+
+                //
+                binding.btnHomeModule.visibility = View.VISIBLE
+
+            }
+            SplitInstallSessionStatus.FAILED -> {
+                setStatus("FAILED")
             }
         }
     }

@@ -2,4 +2,5 @@
 
     <string name="home_module">Home</string>
     <string name="hilt_module">Hilt Module</string>
+    <string name="todo_app">Tod0 App  Module</string>
 </resources>

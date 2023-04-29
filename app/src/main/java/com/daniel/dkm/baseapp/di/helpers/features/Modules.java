@@ -37,13 +37,13 @@ public final class Modules {
         Modules var0 = new Modules();
         INSTANCE = var0;
         modules = Arrays.asList(new FeatureModule[]{
-                        (FeatureModule) FeatureTourism.INSTANCE,
-                        //  (FeatureModule) FeatureSupport.INSTANCE
+                        (FeatureModule) FeatureHomeModule.INSTANCE,
+                        (FeatureModule) FeatureHiltModule.INSTANCE
                 }.clone()
         );
     }
 
-    public static final class FeatureTourism implements FeatureModule, AddressableActivity {
+    public static final class FeatureHomeModule implements FeatureModule, AddressableActivity {
 
         private static final String name;
 
@@ -51,7 +51,7 @@ public final class Modules {
 
         private static final String className;
 
-        public static final FeatureTourism INSTANCE;
+        public static final FeatureHomeModule INSTANCE;
 
         public String getName() {
             return name;
@@ -61,11 +61,11 @@ public final class Modules {
             return injectorName;
         }
 
-        private FeatureTourism() {
+        private FeatureHomeModule() {
         }
 
         static {
-            FeatureTourism var0 = new FeatureTourism();
+            FeatureHomeModule var0 = new FeatureHomeModule();
             INSTANCE = var0;
             name = "home";
             injectorName = Constants.BASE_PACKAGE_NAME + "." + name + ".di.HomeInjector";
@@ -103,7 +103,7 @@ public final class Modules {
             FeatureHiltModule var0 = new FeatureHiltModule();
             INSTANCE = var0;
             name = "hiltmodule";
-            injectorName = Constants.BASE_PACKAGE_NAME + "." + name + ".di.HomeInjector";
+            injectorName = Constants.BASE_PACKAGE_NAME + "." + name + ".di.HiltModuleInjector";
             className = Constants.BASE_PACKAGE_NAME + "." + name + ".MainActivity";
         }
 
